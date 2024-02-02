@@ -1,3 +1,5 @@
+[![truePortals Banner](https://cdn.modrinth.com/data/tkD1yHlW/images/1ede2e1bda4d97ff6457fe1e9f588bf78e5f0ff7.png "truePortals")](https://github.com/TRUEC0DER/truePortals "truePortals")
+
 ## About
 
 **truePortals** - Plugin for disable/enable end or nether portals.
