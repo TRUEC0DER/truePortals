@@ -1,0 +1,23 @@
+name: truePortals
+version: '${version}'
+main: me.truec0der.trueportals.TruePortals
+api-version: '1.12'
+load: STARTUP
+authors: [ TRUEC0DER ]
+description: Plugin for enable or disable portals
+website: https://github.com/TRUEC0DER
+commands:
+  trueportals:
+    description: "Disable or enable portals"
+    usage: /trueportals
+    aliases: [ tportals ]
+permissions:
+  trueportals.admin:
+    description: "All plugin permissions"
+    children:
+      trueportals.portals: true
+      trueportals.commands: true
+  trueportals.portals:
+    description: "Permission to use disabled portals"
+  trueportals.commands:
+    description: "Permission to use plugin commands"

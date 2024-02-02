@@ -1,0 +1,7 @@
+locale: en # Supports locales: en / ru
+portals:
+  end: true # Is end portals enabled
+  nether: true # Is nether portals enabled
+works:
+  players: true # Is plugin works on players
+  entities: true # Is plugin works on other entities

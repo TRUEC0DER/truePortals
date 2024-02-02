@@ -1,0 +1,38 @@
+prefix: "<gradient:#A55AE3:#D5352B>truePortals • <reset>" # Plugin messages prefix (%prefix% placeholder)
+not-perms: "%prefix%<red>You don't have permissions to use this command" # When player don't have perms to use plugin commands
+need-correct-args: "%prefix%<red>Need more or correct args to use this command" # When need more or correct args
+help:
+  info: |2 # Plugin help message
+  
+    %prefix%Plugin commands
+    <#A55AE3>» <white>/tportals status [end | nether] [enable | disable] - <#A55AE3>Change the portals status
+    <#A55AE3>» <white>/tportals reload - <#A55AE3>Reload plugin
+
+status:
+  info:
+    info: |2 # Info about portals statuses
+    
+      %prefix%Portals status
+      <#A55AE3>» <white>End-portals: %end_portal_status%
+      <#D5352B>» <white>Nether-portals: %nether_portal_status%
+
+    states:
+      - <red>disabled # Disabled placeholder
+      - <green>enabled # Enabled placeholder
+  change:
+    info: "%prefix%You %portal_status% %portal_name% <white>portals" # Changed portal status message
+    portals:
+      - <#A55AE3>end # End placeholder
+      - <#D5352B>nether # Nether placeholder
+    states:
+      - <red>disabled # Disabled placeholder
+      - <green>enabled # Enabled placeholder
+  can-not-use: # Message when player don't have permission to use disabled portal
+    end:
+      title: "<#A55AE3>End <white>portals are disabled" # Title (Make a empty string if don't need)
+      subtitle: "<red>You can't use them" # Subtitle (Make a empty string if don't need)
+    nether:
+      title: "<#D5352B>Nether <white>portals are disabled" # Title (Make a empty string if don't need)
+      subtitle: "<red>You can't use them" # Subtitle (Make a empty string if don't need)
+reload:
+  info: "%prefix%<green>Reloading plugin..." # Plugin reload message
