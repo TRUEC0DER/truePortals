@@ -1,7 +1,6 @@
 name: truePortals
 version: '${version}'
 main: me.truec0der.trueportals.TruePortals
-api-version: '1.12'
 load: STARTUP
 authors: [ TRUEC0DER ]
 description: Plugin for enable or disable portals
