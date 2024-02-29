@@ -23,4 +23,4 @@
 
 ## Plugin demonstration
 
-[![Watch the video](https://img.youtube.com/vi/euz5S4DFFE0/hqdefault.jpg)](https://www.youtube.com/watch?v=euz5S4DFFE0)
+([Watch the video](https://www.youtube.com/watch?v=euz5S4DFFE0))
