@@ -1,7 +1,8 @@
-package me.truec0der.trueportals.models;
+package me.truec0der.trueportals.model;
 
 import lombok.Getter;
-import me.truec0der.trueportals.managers.SettingsManager;
+import me.truec0der.trueportals.manager.SettingsManager;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ConfigModel {
@@ -14,6 +15,11 @@ public class ConfigModel {
     private boolean portalsEnd;
     @Getter
     private boolean portalsNether;
+
+    @Getter
+    private ConfigurationSection destinationsEnd;
+    @Getter
+    private ConfigurationSection destinationsNether;
 
     @Getter
     private boolean worksPlayers;
@@ -32,6 +38,9 @@ public class ConfigModel {
 
         this.portalsEnd = config.getBoolean("portals.end");
         this.portalsNether = config.getBoolean("portals.nether");
+
+        this.destinationsEnd = config.getConfigurationSection("destinations.end");
+        this.destinationsNether = config.getConfigurationSection("destinations.nether");
 
         this.worksPlayers = config.getBoolean("works.players");
         this.worksEntities = config.getBoolean("works.entities");

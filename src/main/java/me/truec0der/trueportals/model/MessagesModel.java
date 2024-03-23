@@ -1,7 +1,7 @@
-package me.truec0der.trueportals.models;
+package me.truec0der.trueportals.model;
 
 import lombok.Getter;
-import me.truec0der.trueportals.managers.SettingsManager;
+import me.truec0der.trueportals.manager.SettingsManager;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.List;
@@ -15,6 +15,8 @@ public class MessagesModel {
     private String notPerms;
     @Getter
     private String needCorrectArgs;
+    @Getter
+    private String onlyPlayer;
 
     @Getter
     private String helpInfo;
@@ -30,6 +32,18 @@ public class MessagesModel {
     private List<String> statusChangePortals;
     @Getter
     private List<String> statusChangeStates;
+
+    @Getter
+    private String destinationChangeInfo;
+    @Getter
+    private List<String> destinationChangePortals;
+    @Getter
+    private List<String> destinationChangeStates;
+
+    @Getter
+    private String destinationSetSpawnInfo;
+    @Getter
+    private List<String> destinationSetSpawnPortals;
 
     @Getter
     private String statusCanNotUseEndTitle;
@@ -54,6 +68,7 @@ public class MessagesModel {
         this.prefix = messages.getString("prefix");
         this.notPerms = messages.getString("not-perms");
         this.needCorrectArgs = messages.getString("need-correct-args");
+        this.onlyPlayer = messages.getString("only-player");
 
         this.helpInfo = messages.getString("help.info");
 
@@ -63,6 +78,13 @@ public class MessagesModel {
         this.statusChangeInfo = messages.getString("status.change.info");
         this.statusChangePortals = messages.getStringList("status.change.portals");
         this.statusChangeStates = messages.getStringList("status.change.states");
+
+        this.destinationChangeInfo = messages.getString("destination.change.info");
+        this.destinationChangePortals = messages.getStringList("destination.change.portals");
+        this.destinationChangeStates = messages.getStringList("destination.change.states");
+
+        this.destinationSetSpawnInfo = messages.getString("destination.setspawn.info");
+        this.destinationSetSpawnPortals = messages.getStringList("destination.setspawn.portals");
 
         this.statusCanNotUseEndTitle = messages.getString("status.can-not-use.end.title");
         this.statusCanNotUseEndSubtitle = messages.getString("status.can-not-use.end.subtitle");

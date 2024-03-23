@@ -2,24 +2,17 @@
 
 ## About
 
-**truePortals** - Plugin for disable/enable end or nether portals.
+**truePortals** - Plugin for managing portals.
 
 ## Features
 
+- Disable and enable nether or end portals
+- Changing the portals destination
 - Hex colors support by Adventure Kyori ([Formatting guide](https://docs.advntr.dev/minimessage/format.html))
 - Customizable
 - Multi language support
 
-## Commands
-
-- **/tportals help** - Commands list
-- **/tportals status [end | nether] [enable | disable]** - Change the portal status
-- **/tportals reload** - Reload plugin
-
-## Permissions
-
-- **trueportals.admin** - To use plugin commands
-- **trueportals.portals** - To use disabled portals
+[Discord](https://discord.gg/ZEkU4R9ZYY) | [Wiki](https://github.com/TRUEC0DER/truePortals/wiki)
 
 ## Plugin demonstration
 

@@ -1,17 +1,18 @@
-package me.truec0der.trueportals.utils;
+package me.truec0der.trueportals.util;
 
-import me.truec0der.trueportals.models.MessagesModel;
+import me.truec0der.trueportals.facade.MessagesFacade;
+import me.truec0der.trueportals.model.MessagesModel;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.Map;
 
 public class MessageUtil {
-    private MessagesModel messagesModel;
-    private MiniMessage miniMessage;
+    private final MessagesModel messagesModel;
+    private final MiniMessage miniMessage;
 
-    public MessageUtil(MessagesModel messagesModel) {
-        this.messagesModel = messagesModel;
+    public MessageUtil(MessagesFacade messagesFacade) {
+        this.messagesModel = messagesFacade.getMessagesModel();
         this.miniMessage = MiniMessage.miniMessage();
     }
 

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'me.truec0der'
-version = '1.0.1'
+version = '1.1.0'
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ dependencies {
     implementation "org.bstats:bstats-bukkit:3.0.2"
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 8
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
