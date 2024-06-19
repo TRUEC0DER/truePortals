@@ -1,32 +1,22 @@
 package me.truec0der.trueportals.util;
 
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.model.MessagesModel;
+import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.Map;
 
+@UtilityClass
 public class MessageUtil {
-    private final MessagesModel messagesModel;
-    private final MiniMessage miniMessage;
-
-    public MessageUtil(MessagesFacade messagesFacade) {
-        this.messagesModel = messagesFacade.getMessagesModel();
-        this.miniMessage = MiniMessage.miniMessage();
-    }
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public Component create(String message) {
-        String prefix = messagesModel.getPrefix();
-
         if (message == null) return Component.empty();
 
-        return miniMessage.deserialize(message.replaceAll("%prefix%", prefix));
+        return miniMessage.deserialize(message);
     }
 
     public Component create(String message, Map<String, String> placeholders) {
-        String prefix = messagesModel.getPrefix();
-
         if (message == null) return Component.empty();
 
         for (Map.Entry<String, String> entry : placeholders.entrySet()) {
@@ -35,6 +25,6 @@ public class MessageUtil {
             message = message.replace(placeholder, replacement);
         }
 
-        return miniMessage.deserialize(message.replaceAll("%prefix%", prefix));
+        return miniMessage.deserialize(message);
     }
 }
