@@ -1,8 +1,7 @@
 package me.truec0der.trueportals.command.subcommand;
 
 import me.truec0der.trueportals.command.ICommand;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.model.ConfigModel;
+import me.truec0der.trueportals.config.configs.MainConfig;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,11 +12,10 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class CommandDestinationSpawn implements ICommand {
-    private final ConfigModel configModel;
+    private final MainConfig mainConfig;
 
-
-    public CommandDestinationSpawn(ConfigFacade configFacade) {
-        this.configModel = configFacade.getConfigModel();
+    public CommandDestinationSpawn(MainConfig mainConfig) {
+        this.mainConfig = mainConfig;
     }
 
     @Override
@@ -50,7 +48,7 @@ public class CommandDestinationSpawn implements ICommand {
 
         String dimension = args[0].toLowerCase();
 
-        ConfigurationSection destinationSection = dimension.equals("end") ? configModel.getDestinationsEnd() : configModel.getDestinationsNether();
+        ConfigurationSection destinationSection = dimension.equals("end") ? mainConfig.getDestinationsEnd() : mainConfig.getDestinationsNether();
         String destinationWorld = destinationSection.getString("world");
         List<Double> destinationCoords = destinationSection.getDoubleList("coords");
 

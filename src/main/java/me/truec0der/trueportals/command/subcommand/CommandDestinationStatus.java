@@ -1,11 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
 import me.truec0der.trueportals.command.ICommand;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.manager.SettingsManager;
-import me.truec0der.trueportals.model.ConfigModel;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -15,17 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDestinationStatus implements ICommand {
-    private final SettingsManager configManager;
-    private final ConfigModel configModel;
-    private final MessagesModel messagesModel;
-    private final MessageUtil messageUtil;
+    private final MainConfig mainConfig;
+    private final LangConfig langConfig;
 
-
-    public CommandDestinationStatus(ConfigFacade configFacade, MessagesFacade messagesFacade, MessageUtil messageUtil) {
-        this.configManager = configFacade.getConfigManager();
-        this.configModel = configFacade.getConfigModel();
-        this.messagesModel = messagesFacade.getMessagesModel();
-        this.messageUtil = messageUtil;
+    public CommandDestinationStatus(MainConfig mainConfig, LangConfig langConfig) {
+        this.mainConfig = mainConfig;
+        this.langConfig = langConfig;
     }
 
     @Override
@@ -61,13 +53,12 @@ public class CommandDestinationStatus implements ICommand {
         changeDestinationPlaceholders.put("destination_status", getPortalState(status));
         changeDestinationPlaceholders.put("portal_name", getPortalName(dimension));
 
-        configManager.getSettings().set("destinations." + dimension + ".enabled", "enable".equals(status));
-        configManager.save();
+        mainConfig.getConfig().set("destinations." + dimension + ".enabled", "enable".equals(status));
+        mainConfig.save();
 
-        configModel.reload();
-        configManager.reload();
+        mainConfig.reload();
 
-        Component destinationStatus = messageUtil.create(messagesModel.getDestinationChangeInfo(), changeDestinationPlaceholders);
+        Component destinationStatus = MessageUtil.create(langConfig.getDestinationChangeInfo(), changeDestinationPlaceholders);
 
         audience.sendMessage(destinationStatus);
 
@@ -75,10 +66,10 @@ public class CommandDestinationStatus implements ICommand {
     }
 
     private String getPortalState(String status) {
-        return messagesModel.getDestinationChangeStates().get("disable".equals(status) ? 0 : 1);
+        return langConfig.getDestinationChangeStates().get("disable".equals(status) ? 0 : 1);
     }
 
     private String getPortalName(String dimension) {
-        return messagesModel.getDestinationChangePortals().get("end".equals(dimension) ? 0 : 1);
+        return langConfig.getDestinationChangePortals().get("end".equals(dimension) ? 0 : 1);
     }
 }

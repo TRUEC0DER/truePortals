@@ -2,19 +2,19 @@ package me.truec0der.trueportals.command.subcommand;
 
 import me.truec0der.trueportals.TruePortals;
 import me.truec0der.trueportals.command.ICommand;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.command.CommandSender;
 
 public class CommandReload implements ICommand {
-    private final MessagesModel messagesModel;
-    private final MessageUtil messageUtil;
+    private final LangConfig langConfig;
+    private final PluginReloadService pluginReloadService;
 
-    public CommandReload(MessagesFacade messagesFacade, MessageUtil messageUtil) {
-        this.messagesModel = messagesFacade.getMessagesModel();
-        this.messageUtil = messageUtil;
+    public CommandReload(LangConfig langConfig, PluginReloadService pluginReloadService) {
+        this.langConfig = langConfig;
+        this.pluginReloadService = pluginReloadService;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class CommandReload implements ICommand {
     }
 
     public boolean execute(CommandSender sender, Audience audience, String[] args) {
-        audience.sendMessage(messageUtil.create(messagesModel.getReloadInfo()));
+        audience.sendMessage(MessageUtil.create(langConfig.getReloadInfo()));
 
-        TruePortals.reloadPlugin();
+        pluginReloadService.reload();
 
         return true;
     }

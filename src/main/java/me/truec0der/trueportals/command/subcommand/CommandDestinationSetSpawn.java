@@ -1,11 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
 import me.truec0der.trueportals.command.ICommand;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.manager.SettingsManager;
-import me.truec0der.trueportals.model.ConfigModel;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -17,20 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandDestinationSetSpawn implements ICommand {
-    private final SettingsManager configManager;
-    private final ConfigModel configModel;
-    private final MessagesModel messagesModel;
-    private final MessageUtil messageUtil;
+    private final MainConfig mainConfig;
+    private final LangConfig langConfig;
 
-
-    public CommandDestinationSetSpawn(ConfigFacade configFacade, MessagesFacade messagesFacade, MessageUtil messageUtil) {
-        this.configManager = configFacade.getConfigManager();
-        this.configModel = configFacade.getConfigModel();
-        this.messagesModel = messagesFacade.getMessagesModel();
-        this.messageUtil = messageUtil;
+    public CommandDestinationSetSpawn(MainConfig mainConfig, LangConfig langConfig) {
+        this.mainConfig = mainConfig;
+        this.langConfig = langConfig;
     }
 
-    @NotNull
     private double[] getCoords(Player player) {
         double playerCoordsX = player.getLocation().getX();
         double playerCoordsY = player.getLocation().getY();
@@ -93,14 +84,13 @@ public class CommandDestinationSetSpawn implements ICommand {
         setSpawnDestinationPlaceholders.put("coords_yaw", String.valueOf(playerCoords[3]));
         setSpawnDestinationPlaceholders.put("coords_pitch", String.valueOf(playerCoords[4]));
 
-        configManager.getSettings().set("destinations." + dimension + ".world", playerWorld);
-        configManager.getSettings().set("destinations." + dimension + ".coords", playerCoords);
-        configManager.save();
+        mainConfig.getConfig().set("destinations." + dimension + ".world", playerWorld);
+        mainConfig.getConfig().set("destinations." + dimension + ".coords", playerCoords);
+        mainConfig.save();
 
-        configManager.reload();
-        configModel.reload();
+        mainConfig.reload();
 
-        Component destinationStatus = messageUtil.create(messagesModel.getDestinationSetSpawnInfo(), setSpawnDestinationPlaceholders);
+        Component destinationStatus = MessageUtil.create(langConfig.getDestinationSetSpawnInfo(), setSpawnDestinationPlaceholders);
 
         audience.sendMessage(destinationStatus);
 
@@ -108,6 +98,6 @@ public class CommandDestinationSetSpawn implements ICommand {
     }
 
     private String getPortalName(String dimension) {
-        return messagesModel.getDestinationChangePortals().get("end".equals(dimension) ? 0 : 1);
+        return langConfig.getDestinationChangePortals().get("end".equals(dimension) ? 0 : 1);
     }
 }

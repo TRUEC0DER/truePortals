@@ -1,10 +1,9 @@
 package me.truec0der.trueportals.command;
 
 import me.truec0der.trueportals.command.subcommand.*;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.facade.PluginFacade;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.config.configs.MainConfig;
+import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -24,21 +23,17 @@ import java.util.stream.Collectors;
 
 public class CommandHandler implements CommandExecutor, TabCompleter {
     private final BukkitAudiences adventure;
-    private final ConfigFacade configFacade;
-    private final MessagesFacade messagesFacade;
-    private final MessagesModel messagesModel;
-    private final MessageUtil messageUtil;
+    private final PluginReloadService pluginReloadService;
+    private final MainConfig mainConfig;
+    private final LangConfig langConfig;
     private final CommandManager commandManager;
 
-    public CommandHandler(PluginFacade pluginFacade, ConfigFacade configFacade, MessagesFacade messagesFacade, MessageUtil messageUtil) {
-        this.adventure = pluginFacade.getAdventure();
+    public CommandHandler(BukkitAudiences adventure, PluginReloadService pluginReloadService, MainConfig mainConfig, LangConfig langConfig) {
+        this.adventure = adventure;
+        this.pluginReloadService = pluginReloadService;
 
-        this.configFacade = configFacade;
-        this.messagesFacade = messagesFacade;
-
-        this.messagesModel = messagesFacade.getMessagesModel();
-
-        this.messageUtil = messageUtil;
+        this.mainConfig = mainConfig;
+        this.langConfig = langConfig;
 
         this.commandManager = new CommandManager();
 
@@ -54,17 +49,17 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
         if (args.length == 0) {
             if (!emptyCommand.isPresent()) {
-                audience.sendMessage(messageUtil.create(messagesModel.getNeedCorrectArgs()));
+                audience.sendMessage(MessageUtil.create(langConfig.getNeedCorrectArgs()));
                 return true;
             }
 
             if (!(sender instanceof Player) && !emptyCommand.get().isConsoleCan()) {
-                audience.sendMessage(messageUtil.create(messagesModel.getOnlyPlayer()));
+                audience.sendMessage(MessageUtil.create(langConfig.getOnlyPlayer()));
                 return true;
             }
 
             if (!sender.hasPermission(emptyCommand.get().getPermission())) {
-                audience.sendMessage(messageUtil.create(messagesModel.getNotPerms()));
+                audience.sendMessage(MessageUtil.create(langConfig.getNotPerms()));
                 return true;
             }
             return emptyCommand.map(cmd -> executeCommand(cmd, sender, audience, slicedArgs)).get();
@@ -76,17 +71,17 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
             for (ICommand commandObject : foundCommands) {
                 if (Pattern.matches(commandObject.getRegex(), StringUtils.join(slicedArgs, " "))) {
                     if (!sender.hasPermission(commandObject.getPermission())) {
-                        audience.sendMessage(messageUtil.create(messagesModel.getNotPerms()));
+                        audience.sendMessage(MessageUtil.create(langConfig.getNotPerms()));
                         return true;
                     }
                     return executeCommand(commandObject, sender, audience, slicedArgs);
                 }
             }
-            audience.sendMessage(messageUtil.create(messagesModel.getNeedCorrectArgs()));
+            audience.sendMessage(MessageUtil.create(langConfig.getNeedCorrectArgs()));
             return true;
         }
 
-        audience.sendMessage(messageUtil.create(messagesModel.getNeedCorrectArgs()));
+        audience.sendMessage(MessageUtil.create(langConfig.getNeedCorrectArgs()));
         return true;
     }
 
@@ -95,13 +90,13 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
     }
 
     private void initCommands() {
-        commandManager.addCommand(new CommandPortalStatus(configFacade, messagesFacade, messageUtil));
-        commandManager.addCommand(new CommandDestinationStatus(configFacade, messagesFacade, messageUtil));
-        commandManager.addCommand(new CommandDestinationSetSpawn(configFacade, messagesFacade, messageUtil));
-        commandManager.addCommand(new CommandDestinationSpawn(configFacade));
-        commandManager.addCommand(new CommandReload(messagesFacade, messageUtil));
-        commandManager.addCommand(new CommandHelp(messagesFacade, messageUtil));
-        commandManager.addCommand(new CommandInfo(configFacade, messagesFacade, messageUtil));
+        commandManager.addCommand(new CommandPortalStatus(mainConfig, langConfig));
+        commandManager.addCommand(new CommandDestinationStatus(mainConfig, langConfig));
+        commandManager.addCommand(new CommandDestinationSetSpawn(mainConfig, langConfig));
+        commandManager.addCommand(new CommandDestinationSpawn(mainConfig));
+        commandManager.addCommand(new CommandReload(langConfig, pluginReloadService));
+        commandManager.addCommand(new CommandHelp(langConfig));
+        commandManager.addCommand(new CommandInfo(mainConfig, langConfig));
     }
 
     @Override

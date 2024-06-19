@@ -1,10 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
 import me.truec0der.trueportals.command.ICommand;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.model.ConfigModel;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -14,14 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandInfo implements ICommand {
-    private final ConfigModel configModel;
-    private final MessagesModel messagesModel;
-    private final MessageUtil messageUtil;
+    private final MainConfig mainConfig;
+    private final LangConfig langConfig;
 
-    public CommandInfo(ConfigFacade configFacade, MessagesFacade messagesFacade, MessageUtil messageUtil) {
-        this.configModel = configFacade.getConfigModel();
-        this.messagesModel = messagesFacade.getMessagesModel();
-        this.messageUtil = messageUtil;
+    public CommandInfo(MainConfig mainConfig, LangConfig langConfig) {
+        this.mainConfig = mainConfig;
+        this.langConfig = langConfig;
     }
 
     @Override
@@ -51,13 +47,12 @@ public class CommandInfo implements ICommand {
 
     public boolean execute(CommandSender sender, Audience audience, String[] args) {
         Map<String, String> statusPlaceholders = new HashMap<>();
-        statusPlaceholders.put("end_portal_status", getState(configModel.isPortalsEnd()));
-        statusPlaceholders.put("nether_portal_status", getState(configModel.isPortalsNether()));
-        statusPlaceholders.put("end_destination_status", getState(configModel.getDestinationsEnd().getBoolean("enabled")));
-        statusPlaceholders.put("nether_destination_status", getState(configModel.getDestinationsNether().getBoolean("enabled")));
+        statusPlaceholders.put("end_portal_status", getState(mainConfig.isPortalsEnd()));
+        statusPlaceholders.put("nether_portal_status", getState(mainConfig.isPortalsNether()));
+        statusPlaceholders.put("end_destination_status", getState(mainConfig.getDestinationsEnd().getBoolean("enabled")));
+        statusPlaceholders.put("nether_destination_status", getState(mainConfig.getDestinationsNether().getBoolean("enabled")));
 
-
-        Component status = messageUtil.create(messagesModel.getStatusInfo(), statusPlaceholders);
+        Component status = MessageUtil.create(langConfig.getStatusInfo(), statusPlaceholders);
 
         audience.sendMessage(status);
 
@@ -65,6 +60,6 @@ public class CommandInfo implements ICommand {
     }
 
     public String getState(boolean state) {
-        return messagesModel.getStatusInfoStates().get(!state ? 0 : 1);
+        return langConfig.getStatusInfoStates().get(!state ? 0 : 1);
     }
 }
