@@ -2,13 +2,14 @@ package me.truec0der.trueportals;
 
 import lombok.NonNull;
 import me.truec0der.trueportals.command.CommandHandler;
-import me.truec0der.trueportals.facade.ConfigFacade;
-import me.truec0der.trueportals.facade.MessagesFacade;
-import me.truec0der.trueportals.facade.PluginFacade;
+import me.truec0der.trueportals.config.configs.LangConfig;
+import me.truec0der.trueportals.config.configs.MainConfig;
+import me.truec0der.trueportals.impl.service.plugin.PluginReloadServiceImpl;
+import me.truec0der.trueportals.impl.service.portal.PortalServiceImpl;
+import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
+import me.truec0der.trueportals.interfaces.service.portal.PortalService;
 import me.truec0der.trueportals.listener.PortalListener;
-import me.truec0der.trueportals.manager.SettingsManager;
-import me.truec0der.trueportals.model.ConfigModel;
-import me.truec0der.trueportals.model.MessagesModel;
+import me.truec0der.trueportals.misc.TaskScheduler;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
@@ -16,32 +17,24 @@ import org.bstats.charts.SimplePie;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class TruePortals extends JavaPlugin {
-    private static TruePortals instance;
-    private BukkitAudiences adventure;
-    private PluginFacade pluginFacade;
-    private ConfigFacade configFacade;
-    private MessagesFacade messagesFacade;
-    private MessageUtil messageUtil;
+import java.io.File;
 
-    public static void reloadPlugin() {
-        instance.onDisable();
-        instance.onEnable();
-    }
+public final class TruePortals extends JavaPlugin {
+    private BukkitAudiences adventure;
+    private TaskScheduler taskScheduler;
+    private PluginReloadService pluginReloadService;
+    private PortalService portalService;
+    private MainConfig mainConfig;
+    private LangConfig langConfig;
 
     @Override
     public void onEnable() {
-        instance = this;
-        adventure = BukkitAudiences.create(this);
-
-        pluginFacade = new PluginFacade(instance, adventure());
-//        commandList = new ArrayList<>();
-
-        initSettings();
-        messageUtil = new MessageUtil(messagesFacade);
-
-        registerCommands();
-        registerEvents();
+        initAdventure();
+        initTaskScheduler();
+        initConfig();
+        initService();
+        initCommand();
+        initListener();
         initMetrics();
 
         getLogger().info("Plugin enabled!");
@@ -49,12 +42,7 @@ public final class TruePortals extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(instance);
-
-        if (pluginFacade.getAdventure() != null) {
-            pluginFacade.getAdventure().close();
-            pluginFacade.setAdventure(null);
-        }
+        HandlerList.unregisterAll(this);
 
         getLogger().info("Plugin disabled!");
     }
@@ -63,32 +51,41 @@ public final class TruePortals extends JavaPlugin {
         if (adventure == null) {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
         }
+
         return adventure;
     }
 
-    private void initSettings() {
-        SettingsManager configManager = new SettingsManager(instance, "config.yml");
-        ConfigModel configModel = new ConfigModel(configManager);
-        configFacade = new ConfigFacade(configManager, configModel);
-
-        SettingsManager messagesManager = new SettingsManager(instance, String.format("messages/messages_%s.yml", configModel.getLocale()), "messages/messages_en.yml");
-        MessagesModel messagesModel = new MessagesModel(messagesManager);
-        messagesFacade = new MessagesFacade(messagesManager, messagesModel);
+    private void initAdventure() {
+        adventure = BukkitAudiences.create(this);
     }
 
-    private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new PortalListener(pluginFacade, configFacade, messagesFacade, messageUtil), this);
+    private void initTaskScheduler() {
+        taskScheduler = new TaskScheduler(this);
     }
 
-    private void registerCommands() {
-        getServer().getPluginCommand("trueportals").setExecutor(new CommandHandler(pluginFacade, configFacade, messagesFacade, messageUtil));
-        getCommand("trueportals").setTabCompleter(new CommandHandler(pluginFacade, configFacade, messagesFacade, messageUtil));
+    private void initConfig() {
+        MainConfig mainConfig = new MainConfig(this, new File(this.getDataFolder().getPath()), "config.yml");
+        LangConfig langConfig = new LangConfig(this, new File(this.getDataFolder().getPath()), String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
+    }
+
+    private void initService() {
+        pluginReloadService = new PluginReloadServiceImpl(mainConfig, langConfig);
+        portalService = new PortalServiceImpl(adventure(), taskScheduler, mainConfig, langConfig);
+    }
+
+    private void initCommand() {
+        getServer().getPluginCommand("trueportals").setExecutor(new CommandHandler(adventure(), pluginReloadService, mainConfig, langConfig));
+        getCommand("trueportals").setTabCompleter(new CommandHandler(adventure(), pluginReloadService, mainConfig, langConfig));
+    }
+
+    private void initListener() {
+        getServer().getPluginManager().registerEvents(new PortalListener(portalService), this);
     }
 
     private void initMetrics() {
         int pluginId = 20857;
-        Metrics metrics = new Metrics(instance, pluginId);
+        Metrics metrics = new Metrics(this, pluginId);
 
-        metrics.addCustomChart(new SimplePie("locale", () -> configFacade.getConfigModel().getLocale()));
+        metrics.addCustomChart(new SimplePie("locale", () -> mainConfig.getLocale()));
     }
 }
