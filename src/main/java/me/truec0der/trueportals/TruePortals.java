@@ -10,7 +10,6 @@ import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.interfaces.service.portal.PortalService;
 import me.truec0der.trueportals.listener.PortalListener;
 import me.truec0der.trueportals.misc.TaskScheduler;
-import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;

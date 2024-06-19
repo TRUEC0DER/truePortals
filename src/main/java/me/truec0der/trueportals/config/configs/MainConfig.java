@@ -17,6 +17,7 @@ public class MainConfig extends ConfigHolder {
     private ConfigurationSection destinationsNether;
     private boolean worksPlayers;
     private boolean worksEntities;
+
     public MainConfig(Plugin plugin, File filePath, String file) {
         super(plugin, filePath, file);
         loadAndSave();

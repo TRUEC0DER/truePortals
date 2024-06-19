@@ -1,6 +1,5 @@
 package me.truec0der.trueportals.command.subcommand;
 
-import me.truec0der.trueportals.TruePortals;
 import me.truec0der.trueportals.command.ICommand;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
