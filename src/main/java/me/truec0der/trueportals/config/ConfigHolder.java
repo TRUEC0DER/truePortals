@@ -65,7 +65,11 @@ public abstract class ConfigHolder {
 
     private void load(File filePath, String file, String defaultFile) {
         File configFile = new File(filePath, file);
+
         InputStream resourcePath = plugin.getResource(defaultFile);
+
+        String resultFile = (resourcePath != null) ? file : defaultFile;
+        File resultConfigFile = new File(filePath, resultFile);
 
         if (!configFile.exists()) {
             configFile = (resourcePath != null) ? configFile : new File(filePath, defaultFile);
@@ -73,9 +77,10 @@ public abstract class ConfigHolder {
 
         this.configFile = configFile;
         this.config = YamlConfiguration.loadConfiguration(configFile);
-        this.plugin.saveResource((resourcePath != null) ? file : defaultFile, false);
 
-        copyDefaults(config, (resourcePath != null) ? file : defaultFile);
+        if (!resultConfigFile.exists()) this.plugin.saveResource(resultFile, false);
+
+        copyDefaults(config, resultFile);
     }
 
     private void save(YamlConfiguration config, File configFile) {
