@@ -55,6 +55,8 @@ public class PortalServiceImpl implements PortalService {
             if (playerList.get(player) == null) sendTitle(adventure.player(player), toWorld);
 
             playerList.put(player, Instant.now());
+
+            return true;
         }
 
         return false;
