@@ -1,11 +1,10 @@
-prefix: "<gradient:#A55AE3:#D5352B>truePortals • <reset>" # Plugin messages prefix (%prefix% placeholder)
-not-perms: "%prefix%<red>You don't have permissions to use this command" # When player don't have perms to use plugin commands
-need-correct-args: "%prefix%<red>Need more or correct args to use this command" # When need more or correct args
-only-player: "%prefix%<red>This command can use only players" # When command only for players use not player
+not-perms: "<red>You don't have permissions to use this command" # When player don't have perms to use plugin commands
+need-correct-args: "<red>Need more or correct args to use this command" # When need more or correct args
+only-player: "<red>This command can use only players" # When command only for players use not player
 help:
   info: |2 # Plugin help message
   
-    %prefix%Plugin commands
+    Plugin commands
     <#A55AE3>» <white>/tportals status <end | nether> <enable | disable> - <#A55AE3>Change the portals status
     <#A55AE3>» <white>/tportals destination <end | nether> <spawn> - <#A55AE3>Teleport to destination spawn
     <#A55AE3>» <white>/tportals destination <end | nether> <setspawn> - <#A55AE3>Change destination spawn
@@ -16,11 +15,11 @@ status:
   info:
     info: |2 # Info about portals statuses
     
-      %prefix%Portals status
+      Portals status
       <#A55AE3>» <white>End-portals: %end_portal_status%
       <#D5352B>» <white>Nether-portals: %nether_portal_status%
     
-      %prefix%Destination status
+      Destination status
       <#A55AE3>» <white>End-portals: %end_destination_status%
       <#D5352B>» <white>Nether-portals: %nether_destination_status%
 
@@ -28,7 +27,7 @@ status:
       - <red>disabled # Disabled placeholder
       - <green>enabled # Enabled placeholder
   change:
-    info: "%prefix%You %portal_status% %portal_name% <white>portals" # Changed portal status message
+    info: "You %portal_status% %portal_name% <white>portals" # Changed portal status message
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
@@ -44,7 +43,7 @@ status:
       subtitle: "<red>You can't use them" # Subtitle (Make a empty string if don't need)
 destination:
   change:
-    info: "%prefix%You %destination_status% <white>change the destinations for %portal_name% <white>portals" # Changed portal status message
+    info: "You %destination_status% <white>change the destinations for %portal_name% <white>portals" # Changed portal status message
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
@@ -54,7 +53,7 @@ destination:
   setspawn:
     info: |2 # Change the destination coords
     
-      %prefix%You set the %portal_name% <white>portals spawn point
+      You set the %portal_name% <white>portals spawn point
       <#A55AE3>» <white>World: <#A55AE3>%world_name% 
       <#A55AE3>» <white>X: <#A55AE3>%coords_x% | <white>Y: <#A55AE3>%coords_y% | <white>Z: <#A55AE3>%coords_z% 
       <#A55AE3>» <white>Yaw: <#A55AE3>%coords_yaw% | <white>Pitch: <#A55AE3>%coords_pitch%
@@ -63,4 +62,4 @@ destination:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
 reload:
-  info: "%prefix%<green>Reloading plugin..." # Plugin reload message
+  info: "<green>Reloading plugin..." # Plugin reload message

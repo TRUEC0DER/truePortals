@@ -1,11 +1,10 @@
-prefix: "<gradient:#A55AE3:#D5352B>truePortals • <reset>" # Префикс сообщений плагина (Плейсхолдер %prefix%)
-not-perms: "%prefix%<red>У вас нет прав на использование этой команды" # Когда игрок не имеет права на использование команд плагина
-need-correct-args: "%prefix%<red>Необходимо больше аргументов, или они должны быть корректны для использования этой команды" # Когда аргументов недостаточно или они неверные
-only-player: "%prefix%<red>Эту команду могут использовать только игроки" # Когда команда только для игроков используется не от лица игрока
+not-perms: "<red>У вас нет прав на использование этой команды" # Когда игрок не имеет права на использование команд плагина
+need-correct-args: "<red>Необходимо больше аргументов, или они должны быть корректны для использования этой команды" # Когда аргументов недостаточно или они неверные
+only-player: "<red>Эту команду могут использовать только игроки" # Когда команда только для игроков используется не от лица игрока
 help:
   info: |2 # Список команд плагина
   
-    %prefix%Команды плагина
+    Команды плагина
     <#A55AE3>» <white>/tportals status <end | nether> <enable | disable> - <#A55AE3>Изменение статусов порталов
     <#A55AE3>» <white>/tportals destination <end | nether> <spawn> - <#A55AE3>Телепортация на изменённое место назначения портала
     <#A55AE3>» <white>/tportals destination <end | nether> <setspawn> - <#A55AE3>Изменение места назначения портала
@@ -16,11 +15,11 @@ status:
   info:
     info: |2 # Информация о статусах порталов
     
-      %prefix%Статус порталов
+      Статус порталов
       <#A55AE3>» <white>Энд-порталы: %end_portal_status%
       <#D5352B>» <white>Незер-порталы: %nether_portal_status%
     
-      %prefix%Изменение места назначения
+      Изменение места назначения
       <#A55AE3>» <white>Энд-порталы: %end_destination_status%
       <#D5352B>» <white>Незер-порталы: %nether_destination_status%
 
@@ -28,7 +27,7 @@ status:
       - <red>отключены # Отключено
       - <green>включены # Включено
   change:
-    info: "%prefix%Вы %portal_status% %portal_name% <white>порталы" # Изменение состояния порталов
+    info: "Вы %portal_status% %portal_name% <white>порталы" # Изменение состояния порталов
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
@@ -44,7 +43,7 @@ status:
       subtitle: "<red>Вы не можете их использовать" # Сабтайтл (Если не нужен - оставить пустую строку)
 destination:
   change:
-    info: "%prefix%Вы %portal_status% <white>изменение места назначения %portal_name% <white>порталов" # Изменение состояния порталов
+    info: "Вы %portal_status% <white>изменение места назначения %portal_name% <white>порталов" # Изменение состояния порталов
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
@@ -54,7 +53,7 @@ destination:
   setspawn:
     info: |2 # Change the destination coords
 
-      %prefix%Вы установили точку спавна %portal_name% <white>порталов
+      Вы установили точку спавна %portal_name% <white>порталов
       <#A55AE3>» <white>Мир: <#A55AE3>%world_name% 
       <#A55AE3>» <white>X: <#A55AE3>%coords_x% | <white>Y: <#A55AE3>%coords_y% | <white>Z: <#A55AE3>%coords_z% 
       <#A55AE3>» <white>Yaw: <#A55AE3>%coords_yaw% | <white>Pitch: <#A55AE3>%coords_pitch%
@@ -63,4 +62,4 @@ destination:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
 reload:
-  info: "%prefix%<green>Перезагружаю плагин..." # Сообщение при перезагрузке плагина
+  info: "<green>Перезагружаю плагин..." # Сообщение при перезагрузке плагина
