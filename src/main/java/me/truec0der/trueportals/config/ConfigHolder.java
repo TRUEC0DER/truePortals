@@ -47,6 +47,7 @@ public abstract class ConfigHolder {
 
     public void reload() {
         loadAndSave();
+        init();
     }
 
     private void load(File filePath, String file) {
