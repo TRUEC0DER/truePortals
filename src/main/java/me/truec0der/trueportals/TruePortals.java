@@ -63,8 +63,8 @@ public final class TruePortals extends JavaPlugin {
     }
 
     private void initConfig() {
-        MainConfig mainConfig = new MainConfig(this, new File(this.getDataFolder().getPath()), "config.yml");
-        LangConfig langConfig = new LangConfig(this, new File(this.getDataFolder().getPath()), String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
+        this.mainConfig = new MainConfig(this, new File(this.getDataFolder().getPath()), "config.yml");
+        this.langConfig = new LangConfig(this, new File(this.getDataFolder().getPath()), String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
     }
 
     private void initService() {

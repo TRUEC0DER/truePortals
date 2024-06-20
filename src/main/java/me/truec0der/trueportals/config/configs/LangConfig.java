@@ -32,7 +32,7 @@ public class LangConfig extends ConfigHolder {
     private String reloadInfo;
 
     public LangConfig(Plugin plugin, File filePath, String file, String defaultFile) {
-        super(plugin, filePath, file);
+        super(plugin, filePath, file, defaultFile);
         loadAndSave();
         init();
     }
