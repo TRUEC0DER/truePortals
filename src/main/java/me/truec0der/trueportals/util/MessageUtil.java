@@ -3,6 +3,7 @@ package me.truec0der.trueportals.util;
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
 import java.util.Map;
 
@@ -26,5 +27,15 @@ public class MessageUtil {
         }
 
         return miniMessage.deserialize(message);
+    }
+
+    public String serialize(String message) {
+        LegacyComponentSerializer serializer = LegacyComponentSerializer.builder().hexColors().build();
+        return serializer.serialize(create(message));
+    }
+
+    public String serialize(String message, Map<String, String> placeholders) {
+        LegacyComponentSerializer serializer = LegacyComponentSerializer.builder().hexColors().build();
+        return serializer.serialize(create(message, placeholders));
     }
 }
