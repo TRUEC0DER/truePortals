@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 public abstract class ConfigHolder {
     private final Plugin plugin;
     private final File filePath;
-    private final String file;
+    private String file;
     private String defaultFile;
     private File configFile;
     @Getter
@@ -46,6 +46,14 @@ public abstract class ConfigHolder {
     }
 
     public void reload() {
+        loadAndSave();
+        init();
+    }
+
+    public void reload(String file, String defaultFile) {
+        this.file = file;
+        this.defaultFile = defaultFile;
+            
         loadAndSave();
         init();
     }
