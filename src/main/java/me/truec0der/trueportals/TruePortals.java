@@ -5,8 +5,10 @@ import me.truec0der.trueportals.command.CommandHandler;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.impl.service.plugin.PluginReloadServiceImpl;
+import me.truec0der.trueportals.impl.service.plugin.PluginUpdateServiceImpl;
 import me.truec0der.trueportals.impl.service.portal.PortalServiceImpl;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
+import me.truec0der.trueportals.interfaces.service.plugin.PluginUpdateService;
 import me.truec0der.trueportals.interfaces.service.portal.PortalService;
 import me.truec0der.trueportals.listener.PortalListener;
 import me.truec0der.trueportals.misc.TaskScheduler;
@@ -14,14 +16,17 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 public final class TruePortals extends JavaPlugin {
     private BukkitAudiences adventure;
     private TaskScheduler taskScheduler;
     private PluginReloadService pluginReloadService;
+    private PluginUpdateService pluginUpdateService;
     private PortalService portalService;
     private MainConfig mainConfig;
     private LangConfig langConfig;
@@ -31,11 +36,11 @@ public final class TruePortals extends JavaPlugin {
         initAdventure();
         initTaskScheduler();
         initConfig();
+        initPluginUpdateService();
         initService();
         initCommand();
         initListener();
         initMetrics();
-
         getLogger().info("Plugin enabled!");
     }
 
@@ -63,8 +68,17 @@ public final class TruePortals extends JavaPlugin {
     }
 
     private void initConfig() {
-        this.mainConfig = new MainConfig(this, new File(this.getDataFolder().getPath()), "config.yml");
-        this.langConfig = new LangConfig(this, new File(this.getDataFolder().getPath()), String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
+        mainConfig = new MainConfig(this, new File(this.getDataFolder().getPath()), "config.yml");
+        langConfig = new LangConfig(this, new File(this.getDataFolder().getPath()), String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
+    }
+
+    private void initPluginUpdateService() {
+        String destinationPath = Paths.get(getDataFolder().getAbsolutePath()).getParent().toString();
+        String[] destinationPathSplit = getFile().getPath().split("/");
+        String destinationName = destinationPathSplit[destinationPathSplit.length - 1];
+
+        pluginUpdateService = new PluginUpdateServiceImpl("https://truec0der.github.io/plugin/truePortals.json", destinationPath, destinationName, langConfig);
+        if (mainConfig.isUpdateCheck()) pluginUpdateService.handleCheck(getDescription().getVersion(), mainConfig.isUpdateAuto());
     }
 
     private void initService() {
