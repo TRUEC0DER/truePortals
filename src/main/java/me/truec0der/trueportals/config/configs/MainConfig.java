@@ -11,6 +11,8 @@ import java.io.File;
 @Getter
 public class MainConfig extends ConfigHolder {
     private String locale;
+    private boolean updateCheck;
+    private boolean updateAuto;
     private boolean portalsEnd;
     private boolean portalsNether;
     private ConfigurationSection destinationsEnd;
@@ -29,6 +31,9 @@ public class MainConfig extends ConfigHolder {
         YamlConfiguration config = this.getConfig();
 
         locale = config.getString("locale");
+
+        updateCheck = config.getBoolean("update.check");
+        updateAuto = config.getBoolean("update.auto");
 
         portalsEnd = config.getBoolean("portals.end");
         portalsNether = config.getBoolean("portals.nether");

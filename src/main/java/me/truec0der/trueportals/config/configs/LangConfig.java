@@ -14,6 +14,11 @@ public class LangConfig extends ConfigHolder {
     private String notPerms;
     private String needCorrectArgs;
     private String onlyPlayer;
+    private String updateNotify;
+    private String updateNotifyFailed;
+    private String updateVersionInfoLine;
+    private String updateAction;
+    private String updateActionFailed;
     private String helpInfo;
     private String statusInfo;
     private List<String> statusInfoStates;
@@ -45,6 +50,11 @@ public class LangConfig extends ConfigHolder {
         notPerms = config.getString("not-perms");
         needCorrectArgs = config.getString("need-correct-args");
         onlyPlayer = config.getString("only-player");
+        updateNotify = config.getString("update.notify.info");
+        updateNotifyFailed = config.getString("update.notify.failed");
+        updateVersionInfoLine = config.getString("update.version.info.line");
+        updateAction = config.getString("update.action.info");
+        updateActionFailed = config.getString("update.action.failed");
 
         helpInfo = config.getString("help.info");
 
