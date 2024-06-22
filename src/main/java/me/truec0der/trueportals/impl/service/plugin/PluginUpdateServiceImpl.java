@@ -101,12 +101,10 @@ public class PluginUpdateServiceImpl implements PluginUpdateService {
 
     @Override
     public void handleNotify(PluginVersionEntity entity, String currentVersion) {
-        List<String> notifyComponents = Arrays.asList(langConfig.getUpdateNotify().split("\n"));
+        List<String> notifyComponents = new ArrayList<>(Arrays.asList(langConfig.getUpdateNotify().split("\n")));
         List<String> versionInfo = entity.getInfo().stream()
                 .map(info -> langConfig.getUpdateVersionInfoLine().replace("%version_info_line%", info))
                 .collect(Collectors.toList());
-
-        replaceLineInList(notifyComponents, versionInfo, "%version_info%");
 
         Map<String, String> placeholders = Map.of(
                 "current_version", currentVersion,
@@ -114,6 +112,7 @@ public class PluginUpdateServiceImpl implements PluginUpdateService {
                 "url", entity.getUrl()
         );
 
+        replaceLineInList(notifyComponents, versionInfo, "%version_info%");
         List<String> resultText = notifyComponents.stream()
                 .map(component -> MessageUtil.serialize(component, placeholders))
                 .collect(Collectors.toList());
