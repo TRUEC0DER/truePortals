@@ -42,10 +42,8 @@ public class CommandReload implements ICommand {
     }
 
     public boolean execute(CommandSender sender, Audience audience, String[] args) {
-        audience.sendMessage(MessageUtil.create(langConfig.getReloadInfo()));
-
         pluginReloadService.reload();
-
+        audience.sendMessage(MessageUtil.create(langConfig.getReloadInfo()));
         return true;
     }
 }

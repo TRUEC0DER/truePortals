@@ -16,6 +16,6 @@ public class PluginReloadServiceImpl implements PluginReloadService {
     @Override
     public void reload() {
         mainConfig.reload();
-        langConfig.reload();
+        langConfig.reload(String.format("messages/lang_%s.yml", mainConfig.getLocale()), "messages/lang_en.yml");
     }
 }
