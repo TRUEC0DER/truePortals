@@ -1,6 +1,25 @@
 not-perms: "<red>You don't have permissions to use this command" # When player don't have perms to use plugin commands
 need-correct-args: "<red>Need more or correct args to use this command" # When need more or correct args
 only-player: "<red>This command can use only players" # When command only for players use not player
+update:
+  notify:
+    info: |-
+      <#A55AE3>|
+      <#A55AE3>| truePortals » <white>Update detected!
+      <#A55AE3>|
+      <#A55AE3>| Current version » <white>%current_version%
+      <#A55AE3>| New version » <white>%new_version%
+      <#A55AE3>| Link » <white>%url%
+      <#A55AE3>|
+      <#A55AE3>| %version_info%
+      <#A55AE3>|
+    failed: <#A55AE3>truePortals » <red>Failed to check for updates
+  version:
+    info:
+      line: <#A55AE3>| » <white>%version_info_line%
+  action:
+    info: <#A55AE3>truePortals » <white>Plugin updated! Restart the server to apply the update
+    failed: <#A55AE3>truePortals » <red>Failed to update plugin
 help:
   info: |2 # Plugin help message
   

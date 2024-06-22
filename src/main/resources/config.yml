@@ -1,4 +1,7 @@
 locale: en # Supports locales: en / ru
+update:
+  check: true # Send notifications in console if it detects new version
+  auto: false # Plugin auto-update. Don't enable on Windows servers!
 portals:
   end: true # Is end portals enabled
   nether: true # Is nether portals enabled
