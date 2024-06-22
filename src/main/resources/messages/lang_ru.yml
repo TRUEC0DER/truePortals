@@ -1,9 +1,9 @@
-not-perms: "<red>У вас нет прав на использование этой команды" # Когда игрок не имеет права на использование команд плагина
-need-correct-args: "<red>Необходимо больше аргументов, или они должны быть корректны для использования этой команды" # Когда аргументов недостаточно или они неверные
-only-player: "<red>Эту команду могут использовать только игроки" # Когда команда только для игроков используется не от лица игрока
+not-perms: <#A55AE3>| <red>У вас нет прав на использование этой команды # Когда игрок не имеет права на использование команд плагина
+need-correct-args: <#A55AE3>| <red>Необходимо больше аргументов, или они должны быть корректны для использования этой команды # Когда аргументов недостаточно или они неверные
+only-player: <#A55AE3>| <red>Эту команду могут использовать только игроки # Когда команда только для игроков используется не от лица игрока
 update:
   notify:
-    info: |-
+    info: |- # Информация об обновлении
       <#A55AE3>|
       <#A55AE3>| truePortals » <white>Обнаружено обновление!
       <#A55AE3>|
@@ -13,40 +13,52 @@ update:
       <#A55AE3>|
       <#A55AE3>| %version_info%
       <#A55AE3>|
-    failed: <#A55AE3>truePortals » <red>Не удалось проверить обновления
+    failed: |- # Если произошла ошибка при проверке обновлений
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <red>Не удалось проверить обновления
+      <#A55AE3>|
   version:
     info:
-      line: <#A55AE3>| » <white>%version_info_line%
+      line: <#A55AE3>| » <white>%version_info_line% # Строка информации о деталях обновления
   action:
-    info: <#A55AE3>truePortals » <white>Плагин обновлён! Перезагрузите сервер для применения обновления
-    failed: <#A55AE3>truePortals » <red>Не удалось обновить плагин
+    info: |- # Когда плагин успешно обновлен
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <white>Плагин обновлен! Перезапустите сервер для применения обновления
+      <#A55AE3>|
+    failed: |- # Если произошла ошибка при обновлении плагина
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <red>Не удалось обновить плагин
+      <#A55AE3>|
 help:
-  info: |2 # Список команд плагина
-  
-    Команды плагина
-    <#A55AE3>» <white>/tportals status <end | nether> <enable | disable> - <#A55AE3>Изменение статусов порталов
-    <#A55AE3>» <white>/tportals destination <end | nether> <spawn> - <#A55AE3>Телепортация на изменённое место назначения портала
-    <#A55AE3>» <white>/tportals destination <end | nether> <setspawn> - <#A55AE3>Изменение места назначения портала
-    <#A55AE3>» <white>/tportals destination <end | nether> <enable | disable> - <#A55AE3>Переключение статуса изменения места назначения
-    <#A55AE3>» <white>/tportals reload - <#A55AE3>Перезагрузить плагин
-
+  info: |- # Список команд плагина
+    <#A55AE3>|
+    <#A55AE3>| » Команды плагина
+    <#A55AE3>| 
+    <#A55AE3>| <white>/tportals status <end | nether> <enable | disable> » <#A55AE3>Изменение статус порталов
+    <#A55AE3>| <white>/tportals destination <end | nether> <spawn> » <#A55AE3>Телепортация на изменённое место назначения портала
+    <#A55AE3>| <white>/tportals destination <end | nether> <setspawn> » <#A55AE3>Переключение места назначения портала
+    <#A55AE3>| <white>/tportals destination <end | nether> <enable | disable> » <#A55AE3>Переключение статуса изменения места назначения портала
+    <#A55AE3>| <white>/tportals reload » <#A55AE3>Перезагрузка плагина
+    <#A55AE3>|
 status:
   info:
-    info: |2 # Информация о статусах порталов
-    
-      Статус порталов
-      <#A55AE3>» <white>Энд-порталы: %end_portal_status%
-      <#D5352B>» <white>Незер-порталы: %nether_portal_status%
-    
-      Изменение места назначения
-      <#A55AE3>» <white>Энд-порталы: %end_destination_status%
-      <#D5352B>» <white>Незер-порталы: %nether_destination_status%
-
+    info: |- # Информация о статусе порталов
+      <#A55AE3>| 
+      <#A55AE3>| » Статус порталов
+      <#A55AE3>| 
+      <#A55AE3>| <white>Энд-порталы » %end_portal_status%
+      <#A55AE3>| <white>Незер-порталы » %nether_portal_status%
+      <#A55AE3>| 
+      <#A55AE3>| » Изменение места назначения
+      <#A55AE3>| 
+      <#A55AE3>| <white>Энд-порталы » %end_destination_status%
+      <#A55AE3>| <white>Незер-порталы » %nether_destination_status%
+      <#A55AE3>|
     states:
       - <red>отключены # Отключено
       - <green>включены # Включено
   change:
-    info: "Вы %portal_status% %portal_name% <white>порталы" # Изменение состояния порталов
+    info: <#A55AE3>| <white>Вы %portal_status% %portal_name% <white>порталы # Изменение состояния порталов
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
@@ -55,14 +67,14 @@ status:
       - <green>включили # Включено
   can-not-use: # Сообщение игроку, если он не имеет права использовать выключенный портал
     end:
-      title: "<#A55AE3>Энд <white>порталы отключены" # Тайтл (Если не нужен - оставить пустую строку)
-      subtitle: "<red>Вы не можете их использовать" # Сабтайтл (Если не нужен - оставить пустую строку)
+      title: <#A55AE3>Энд <white>порталы отключены # Тайтл (Если не нужен - оставить пустую строку)
+      subtitle: <red>Вы не можете их использовать # Сабтайтл (Если не нужен - оставить пустую строку)
     nether:
-      title: "<#D5352B>Незер <white>порталы отключены" # Тайтл (Если не нужен - оставить пустую строку)
-      subtitle: "<red>Вы не можете их использовать" # Сабтайтл (Если не нужен - оставить пустую строку)
+      title: <#D5352B>Незер <white>порталы отключены # Тайтл (Если не нужен - оставить пустую строку)
+      subtitle: <red>Вы не можете их использовать # Сабтайтл (Если не нужен - оставить пустую строку)
 destination:
   change:
-    info: "Вы %portal_status% <white>изменение места назначения %portal_name% <white>порталов" # Изменение состояния порталов
+    info: <#A55AE3>| <white>Вы %portal_status% <white>изменение места назначения %portal_name% <white>порталов # Изменение состояния порталов
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
@@ -70,15 +82,17 @@ destination:
       - <red>выключили # Отключено
       - <green>включили # Включено
   setspawn:
-    info: |2 # Change the destination coords
-
-      Вы установили точку спавна %portal_name% <white>порталов
-      <#A55AE3>» <white>Мир: <#A55AE3>%world_name% 
-      <#A55AE3>» <white>X: <#A55AE3>%coords_x% | <white>Y: <#A55AE3>%coords_y% | <white>Z: <#A55AE3>%coords_z% 
-      <#A55AE3>» <white>Yaw: <#A55AE3>%coords_yaw% | <white>Pitch: <#A55AE3>%coords_pitch%
-
+    info: |- # Изменение координат места назначения
+      <#A55AE3>| 
+      <#A55AE3>| » Изменение точки назначения портала
+      <#A55AE3>| 
+      <#A55AE3>| <white>Вы установили точку спавна для %portal_name% <white>порталов
+      <#A55AE3>| <white>Мир » <#A55AE3>%world_name% 
+      <#A55AE3>| <white>X » <#A55AE3>%coords_x% | <white>Y » <#A55AE3>%coords_y% | <white>Z » <#A55AE3>%coords_z% 
+      <#A55AE3>| <white>Угол поворота » <#A55AE3>%coords_yaw% | <white>Тангаж » <#A55AE3>%coords_pitch%
+      <#A55AE3>|
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал
 reload:
-  info: "<green>Перезагружаю плагин..." # Сообщение при перезагрузке плагина
+  info: <#A55AE3>| <green>Плагин перезагружен! # Сообщение при перезагрузке плагина

@@ -1,9 +1,9 @@
-not-perms: "<red>You don't have permissions to use this command" # When player don't have perms to use plugin commands
-need-correct-args: "<red>Need more or correct args to use this command" # When need more or correct args
-only-player: "<red>This command can use only players" # When command only for players use not player
+not-perms: <#A55AE3>| <red>You don't have permissions to use this command # When player don't have perms to use plugin commands
+need-correct-args: <#A55AE3>| <red>Need more or correct args to use this command # When need more or correct args
+only-player: <#A55AE3>| <red>This command can use only players # When command only for players use not player
 update:
   notify:
-    info: |-
+    info: |- # Information about update
       <#A55AE3>|
       <#A55AE3>| truePortals » <white>Update detected!
       <#A55AE3>|
@@ -13,40 +13,52 @@ update:
       <#A55AE3>|
       <#A55AE3>| %version_info%
       <#A55AE3>|
-    failed: <#A55AE3>truePortals » <red>Failed to check for updates
+    failed: |- # When an error occurred while get update information
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <red>Failed to check for updates
+      <#A55AE3>|
   version:
     info:
-      line: <#A55AE3>| » <white>%version_info_line%
+      line: <#A55AE3>| » <white>%version_info_line% # Version details information line
   action:
-    info: <#A55AE3>truePortals » <white>Plugin updated! Restart the server to apply the update
-    failed: <#A55AE3>truePortals » <red>Failed to update plugin
+    info: |- # When the plugin was successfully updated
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <white>Plugin updated! Restart the server to apply the update
+      <#A55AE3>|
+    failed: |- # When an error occurred while plugin update
+      <#A55AE3>| 
+      <#A55AE3>| truePortals » <red>Failed to update plugin
+      <#A55AE3>|
 help:
-  info: |2 # Plugin help message
-  
-    Plugin commands
-    <#A55AE3>» <white>/tportals status <end | nether> <enable | disable> - <#A55AE3>Change the portals status
-    <#A55AE3>» <white>/tportals destination <end | nether> <spawn> - <#A55AE3>Teleport to destination spawn
-    <#A55AE3>» <white>/tportals destination <end | nether> <setspawn> - <#A55AE3>Change destination spawn
-    <#A55AE3>» <white>/tportals destination <end | nether> <enable | disable> - <#A55AE3>Switch destination change status
-    <#A55AE3>» <white>/tportals reload - <#A55AE3>Reload plugin
-
+  info: |- # Plugin help message
+    <#A55AE3>|
+    <#A55AE3>| » Plugin commands
+    <#A55AE3>| 
+    <#A55AE3>| <white>/tportals status <end | nether> <enable | disable> » <#A55AE3>Change the portals status
+    <#A55AE3>| <white>/tportals destination <end | nether> <spawn> » <#A55AE3>Teleport to destination spawn
+    <#A55AE3>| <white>/tportals destination <end | nether> <setspawn> » <#A55AE3>Change destination spawn
+    <#A55AE3>| <white>/tportals destination <end | nether> <enable | disable> » <#A55AE3>Switch destination change status
+    <#A55AE3>| <white>/tportals reload » <#A55AE3>Reload plugin
+    <#A55AE3>|
 status:
   info:
-    info: |2 # Info about portals statuses
-    
-      Portals status
-      <#A55AE3>» <white>End-portals: %end_portal_status%
-      <#D5352B>» <white>Nether-portals: %nether_portal_status%
-    
-      Destination status
-      <#A55AE3>» <white>End-portals: %end_destination_status%
-      <#D5352B>» <white>Nether-portals: %nether_destination_status%
-
+    info: |- # Info about portals statuses
+      <#A55AE3>| 
+      <#A55AE3>| » Portals status
+      <#A55AE3>| 
+      <#A55AE3>| <white>End-portals » %end_portal_status%
+      <#A55AE3>| <white>Nether-portals » %nether_portal_status%
+      <#A55AE3>| 
+      <#A55AE3>| » Destination status
+      <#A55AE3>| 
+      <#A55AE3>| <white>End-portals » %end_destination_status%
+      <#A55AE3>| <white>Nether-portals » %nether_destination_status%
+      <#A55AE3>|
     states:
       - <red>disabled # Disabled placeholder
       - <green>enabled # Enabled placeholder
   change:
-    info: "You %portal_status% %portal_name% <white>portals" # Changed portal status message
+    info: <#A55AE3>| You %portal_status% %portal_name% <white>portals # Changed portal status message
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
@@ -55,14 +67,14 @@ status:
       - <green>enabled # Enabled placeholder
   can-not-use: # Message when player don't have permission to use disabled portal
     end:
-      title: "<#A55AE3>End <white>portals are disabled" # Title (Make a empty string if don't need)
-      subtitle: "<red>You can't use them" # Subtitle (Make a empty string if don't need)
+      title: <#A55AE3>End <white>portals are disabled # Title (Make an empty string if you don't need)
+      subtitle: <red>You can't use them # Subtitle (Make an empty string if you don't need)
     nether:
-      title: "<#D5352B>Nether <white>portals are disabled" # Title (Make a empty string if don't need)
-      subtitle: "<red>You can't use them" # Subtitle (Make a empty string if don't need)
+      title: <#D5352B>Nether <white>portals are disabled # Title (Make an empty string if you don't need)
+      subtitle: <red>You can't use them # Subtitle (Make an empty string if you don't need)
 destination:
   change:
-    info: "You %destination_status% <white>change the destinations for %portal_name% <white>portals" # Changed portal status message
+    info: <#A55AE3>| <white>You %destination_status% <white>change the destinations for %portal_name% <white>portals # Changed portal status message
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
@@ -70,15 +82,17 @@ destination:
       - <red>disabled # Disabled placeholder
       - <green>enabled # Enabled placeholder
   setspawn:
-    info: |2 # Change the destination coords
-    
-      You set the %portal_name% <white>portals spawn point
-      <#A55AE3>» <white>World: <#A55AE3>%world_name% 
-      <#A55AE3>» <white>X: <#A55AE3>%coords_x% | <white>Y: <#A55AE3>%coords_y% | <white>Z: <#A55AE3>%coords_z% 
-      <#A55AE3>» <white>Yaw: <#A55AE3>%coords_yaw% | <white>Pitch: <#A55AE3>%coords_pitch%
-
+    info: |- # Change the destination coords
+      <#A55AE3>| 
+      <#A55AE3>| » Change portals destination
+      <#A55AE3>| 
+      <#A55AE3>| <white>You set the %portal_name% <white>portals spawn point
+      <#A55AE3>| <white>World » <#A55AE3>%world_name% 
+      <#A55AE3>| <white>X » <#A55AE3>%coords_x% | <white>Y » <#A55AE3>%coords_y% | <white>Z » <#A55AE3>%coords_z% 
+      <#A55AE3>| <white>Yaw » <#A55AE3>%coords_yaw% | <white>Pitch » <#A55AE3>%coords_pitch%
+      <#A55AE3>|
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
 reload:
-  info: "<green>Reloading plugin..." # Plugin reload message
+  info: <#A55AE3>| <green>Plugin reloaded! # Plugin reload message
