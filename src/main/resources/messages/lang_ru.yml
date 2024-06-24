@@ -72,6 +72,15 @@ status:
     nether:
       title: <#D5352B>Незер <white>порталы отключены # Тайтл (Если не нужен - оставить пустую строку)
       subtitle: <red>Вы не можете их использовать # Сабтайтл (Если не нужен - оставить пустую строку)
+activation:
+  change:
+    info: <#A55AE3>| <white>Вы %destination_status% <white>активацию %portal_name% <white>порталов # Изменение возможности активации порталов
+    portals:
+      - <#A55AE3>энд # Энд портал
+      - <#D5352B>незер # Незер портал
+    states:
+      - <red>выключили # Отключено
+      - <green>включили # Включено
 destination:
   change:
     info: <#A55AE3>| <white>Вы %destination_status% <white>изменение места назначения %portal_name% <white>порталов # Изменение состояния порталов
