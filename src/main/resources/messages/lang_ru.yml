@@ -74,7 +74,7 @@ status:
       subtitle: <red>Вы не можете их использовать # Сабтайтл (Если не нужен - оставить пустую строку)
 activation:
   change:
-    info: <#A55AE3>| <white>Вы %destination_status% <white>активацию %portal_name% <white>порталов # Изменение возможности активации порталов
+    info: <#A55AE3>| <white>Вы %activation_status% <white>активацию %portal_name% <white>порталов # Изменение возможности активации порталов
     portals:
       - <#A55AE3>энд # Энд портал
       - <#D5352B>незер # Незер портал

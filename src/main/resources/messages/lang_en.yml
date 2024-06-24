@@ -74,7 +74,7 @@ status:
       subtitle: <red>You can't use them # Subtitle (Make an empty string if you don't need)
 activation:
   change:
-    info: <#A55AE3>| <white>You %destination_status% <white>change the activation for %portal_name% <white>portals # Changed portal activation possibility
+    info: <#A55AE3>| <white>You %activation_status% <white>change the activation for %portal_name% <white>portals # Changed portal activation possibility
     portals:
       - <#A55AE3>end # End placeholder
       - <#D5352B>nether # Nether placeholder
