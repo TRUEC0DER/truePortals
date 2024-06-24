@@ -18,7 +18,7 @@ public class PortalEnterListener implements Listener {
     private PortalEnterService portalEnterService;
 
     @EventHandler
-    public void onPlayerPortal(PlayerPortalEvent event) {
+    private void onPlayerPortal(PlayerPortalEvent event) {
         Player player = event.getPlayer();
 
         World.Environment toWorld = event.getTo().getWorld().getEnvironment();
@@ -30,7 +30,7 @@ public class PortalEnterListener implements Listener {
     }
 
     @EventHandler
-    public void onEntityPortal(EntityPortalEvent event) {
+    private void onEntityPortal(EntityPortalEvent event) {
         Entity entity = event.getEntity();
 
         World.Environment toWorld = event.getTo().getWorld().getEnvironment();
