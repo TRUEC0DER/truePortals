@@ -6,10 +6,13 @@ import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.impl.service.plugin.PluginReloadServiceImpl;
 import me.truec0der.trueportals.impl.service.plugin.PluginUpdateServiceImpl;
+import me.truec0der.trueportals.impl.service.portal.PortalActivateServiceImpl;
 import me.truec0der.trueportals.impl.service.portal.PortalEnterServiceImpl;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginUpdateService;
+import me.truec0der.trueportals.interfaces.service.portal.PortalActivateService;
 import me.truec0der.trueportals.interfaces.service.portal.PortalEnterService;
+import me.truec0der.trueportals.listener.PortalActivateListener;
 import me.truec0der.trueportals.listener.PortalEnterListener;
 import me.truec0der.trueportals.misc.TaskScheduler;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -25,8 +28,8 @@ public final class TruePortals extends JavaPlugin {
     private BukkitAudiences adventure;
     private TaskScheduler taskScheduler;
     private PluginReloadService pluginReloadService;
-    private PluginUpdateService pluginUpdateService;
     private PortalEnterService portalEnterService;
+    private PortalActivateService portalActivateService;
     private MainConfig mainConfig;
     private LangConfig langConfig;
 
@@ -77,13 +80,14 @@ public final class TruePortals extends JavaPlugin {
         String[] destinationPathSplit = getFile().getPath().split("/");
         String destinationName = destinationPathSplit[destinationPathSplit.length - 1];
 
-        pluginUpdateService = new PluginUpdateServiceImpl("https://truec0der.github.io/plugin/truePortals.json", destinationPath, destinationName, langConfig);
+        PluginUpdateService pluginUpdateService = new PluginUpdateServiceImpl("https://truec0der.github.io/plugin/truePortals.json", destinationPath, destinationName, langConfig);
         if (mainConfig.isUpdateCheck()) pluginUpdateService.handleCheck(getDescription().getVersion(), mainConfig.isUpdateAuto());
     }
 
     private void initService() {
         pluginReloadService = new PluginReloadServiceImpl(mainConfig, langConfig);
         portalEnterService = new PortalEnterServiceImpl(adventure(), taskScheduler, mainConfig, langConfig);
+        portalActivateService = new PortalActivateServiceImpl(mainConfig);
     }
 
     private void initCommand() {
@@ -93,6 +97,7 @@ public final class TruePortals extends JavaPlugin {
 
     private void initListener() {
         getServer().getPluginManager().registerEvents(new PortalEnterListener(portalEnterService), this);
+        getServer().getPluginManager().registerEvents(new PortalActivateListener(portalActivateService), this);
     }
 
     private void initMetrics() {
