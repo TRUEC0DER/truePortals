@@ -100,5 +100,7 @@ public final class TruePortals extends JavaPlugin {
         Metrics metrics = new Metrics(this, pluginId);
 
         metrics.addCustomChart(new SimplePie("locale", () -> mainConfig.getLocale()));
+        metrics.addCustomChart(new SimplePie("update_check", () -> String.valueOf(mainConfig.isUpdateCheck())));
+        metrics.addCustomChart(new SimplePie("auto_update", () -> String.valueOf(mainConfig.isUpdateAuto())));
     }
 }
