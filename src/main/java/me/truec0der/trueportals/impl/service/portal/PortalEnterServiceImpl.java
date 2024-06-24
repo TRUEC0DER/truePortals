@@ -6,7 +6,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
-import me.truec0der.trueportals.interfaces.service.portal.PortalService;
+import me.truec0der.trueportals.interfaces.service.portal.PortalEnterService;
 import me.truec0der.trueportals.misc.TaskScheduler;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
@@ -32,7 +32,7 @@ import static org.bukkit.World.Environment.THE_END;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class PortalServiceImpl implements PortalService {
+public class PortalEnterServiceImpl implements PortalEnterService {
     BukkitAudiences adventure;
     TaskScheduler taskScheduler;
     MainConfig mainConfig;

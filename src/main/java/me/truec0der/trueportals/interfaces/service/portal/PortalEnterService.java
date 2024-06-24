@@ -8,7 +8,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
 
-public interface PortalService {
+public interface PortalEnterService {
     boolean handlePortalTeleport(Player player, World.Environment fromWorld, World.Environment toWorld);
 
     boolean handlePortalTeleport(Entity player, World.Environment fromWorld, World.Environment toWorld);

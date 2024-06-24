@@ -3,7 +3,7 @@ package me.truec0der.trueportals.listener;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import me.truec0der.trueportals.interfaces.service.portal.PortalService;
+import me.truec0der.trueportals.interfaces.service.portal.PortalEnterService;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,8 +14,8 @@ import org.bukkit.event.player.PlayerPortalEvent;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class PortalListener implements Listener {
-    private PortalService portalService;
+public class PortalEnterListener implements Listener {
+    private PortalEnterService portalEnterService;
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
@@ -24,7 +24,7 @@ public class PortalListener implements Listener {
         World.Environment toWorld = event.getTo().getWorld().getEnvironment();
         World.Environment fromWorld = event.getFrom().getWorld().getEnvironment();
 
-        boolean handlePortalTeleport = portalService.handlePortalTeleport(player, fromWorld, toWorld);
+        boolean handlePortalTeleport = portalEnterService.handlePortalTeleport(player, fromWorld, toWorld);
 
         event.setCancelled(handlePortalTeleport);
     }
@@ -36,7 +36,7 @@ public class PortalListener implements Listener {
         World.Environment toWorld = event.getTo().getWorld().getEnvironment();
         World.Environment fromWorld = event.getFrom().getWorld().getEnvironment();
 
-        boolean handlePortalTeleport = portalService.handlePortalTeleport(entity, fromWorld, toWorld);
+        boolean handlePortalTeleport = portalEnterService.handlePortalTeleport(entity, fromWorld, toWorld);
 
         event.setCancelled(handlePortalTeleport);
     }

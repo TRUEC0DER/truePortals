@@ -6,17 +6,16 @@ import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.impl.service.plugin.PluginReloadServiceImpl;
 import me.truec0der.trueportals.impl.service.plugin.PluginUpdateServiceImpl;
-import me.truec0der.trueportals.impl.service.portal.PortalServiceImpl;
+import me.truec0der.trueportals.impl.service.portal.PortalEnterServiceImpl;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginUpdateService;
-import me.truec0der.trueportals.interfaces.service.portal.PortalService;
-import me.truec0der.trueportals.listener.PortalListener;
+import me.truec0der.trueportals.interfaces.service.portal.PortalEnterService;
+import me.truec0der.trueportals.listener.PortalEnterListener;
 import me.truec0der.trueportals.misc.TaskScheduler;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -27,7 +26,7 @@ public final class TruePortals extends JavaPlugin {
     private TaskScheduler taskScheduler;
     private PluginReloadService pluginReloadService;
     private PluginUpdateService pluginUpdateService;
-    private PortalService portalService;
+    private PortalEnterService portalEnterService;
     private MainConfig mainConfig;
     private LangConfig langConfig;
 
@@ -41,6 +40,7 @@ public final class TruePortals extends JavaPlugin {
         initCommand();
         initListener();
         initMetrics();
+
         getLogger().info("Plugin enabled!");
     }
 
@@ -83,7 +83,7 @@ public final class TruePortals extends JavaPlugin {
 
     private void initService() {
         pluginReloadService = new PluginReloadServiceImpl(mainConfig, langConfig);
-        portalService = new PortalServiceImpl(adventure(), taskScheduler, mainConfig, langConfig);
+        portalEnterService = new PortalEnterServiceImpl(adventure(), taskScheduler, mainConfig, langConfig);
     }
 
     private void initCommand() {
@@ -92,7 +92,7 @@ public final class TruePortals extends JavaPlugin {
     }
 
     private void initListener() {
-        getServer().getPluginManager().registerEvents(new PortalListener(portalService), this);
+        getServer().getPluginManager().registerEvents(new PortalEnterListener(portalEnterService), this);
     }
 
     private void initMetrics() {
