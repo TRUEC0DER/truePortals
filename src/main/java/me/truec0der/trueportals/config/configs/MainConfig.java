@@ -15,6 +15,8 @@ public class MainConfig extends ConfigHolder {
     private boolean updateAuto;
     private boolean portalsEnd;
     private boolean portalsNether;
+    private boolean activationEnd;
+    private boolean activationNether;
     private ConfigurationSection destinationsEnd;
     private ConfigurationSection destinationsNether;
     private boolean worksPlayers;
@@ -37,6 +39,9 @@ public class MainConfig extends ConfigHolder {
 
         portalsEnd = config.getBoolean("portals.end");
         portalsNether = config.getBoolean("portals.nether");
+
+        activationEnd = config.getBoolean("activation.end");
+        activationNether = config.getBoolean("activation.nether");
 
         destinationsEnd = config.getConfigurationSection("destinations.end");
         destinationsNether = config.getConfigurationSection("destinations.nether");
