@@ -94,6 +94,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         commandManager.addCommand(new CommandDestinationStatus(mainConfig, langConfig));
         commandManager.addCommand(new CommandDestinationSetSpawn(mainConfig, langConfig));
         commandManager.addCommand(new CommandDestinationSpawn(mainConfig));
+        commandManager.addCommand(new CommandActivationStatus(mainConfig, langConfig));
         commandManager.addCommand(new CommandReload(langConfig, pluginReloadService));
         commandManager.addCommand(new CommandHelp(langConfig));
         commandManager.addCommand(new CommandInfo(mainConfig, langConfig));
