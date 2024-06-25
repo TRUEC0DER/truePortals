@@ -1,4 +1,4 @@
-[![truePortals Banner](https://cdn.modrinth.com/data/tkD1yHlW/images/1ede2e1bda4d97ff6457fe1e9f588bf78e5f0ff7.png "truePortals")](https://github.com/TRUEC0DER/truePortals "truePortals")
+[![truePortals Banner](https://cdn.modrinth.com/data/tkD1yHlW/images/81ea1b8de45e645b958dafb59185948664e9109f.png "truePortals")](https://github.com/TRUEC0DER/truePortals "truePortals")
 
 ## About
 
