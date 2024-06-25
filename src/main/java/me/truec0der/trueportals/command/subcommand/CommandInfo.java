@@ -49,6 +49,8 @@ public class CommandInfo implements ICommand {
         Map<String, String> statusPlaceholders = new HashMap<>();
         statusPlaceholders.put("end_portal_status", getState(mainConfig.isPortalsEnd()));
         statusPlaceholders.put("nether_portal_status", getState(mainConfig.isPortalsNether()));
+        statusPlaceholders.put("end_activation_status", getState(mainConfig.isActivationEnd()));
+        statusPlaceholders.put("nether_activation_status", getState(mainConfig.isActivationNether()));
         statusPlaceholders.put("end_destination_status", getState(mainConfig.getDestinationsEnd().getBoolean("enabled")));
         statusPlaceholders.put("nether_destination_status", getState(mainConfig.getDestinationsNether().getBoolean("enabled")));
 
