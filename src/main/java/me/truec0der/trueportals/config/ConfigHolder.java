@@ -53,7 +53,7 @@ public abstract class ConfigHolder {
     public void reload(String file, String defaultFile) {
         this.file = file;
         this.defaultFile = defaultFile;
-            
+
         loadAndSave();
         init();
     }
@@ -105,7 +105,7 @@ public abstract class ConfigHolder {
 
             YamlConfiguration defaultSettings = YamlConfiguration.loadConfiguration(reader);
 
-            defaultSettings.getKeys(true).stream()
+            defaultSettings.getKeys(false).stream()
                     .filter(key -> !config.contains(key))
                     .forEach(key -> config.set(key, defaultSettings.get(key)));
 
