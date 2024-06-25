@@ -24,6 +24,9 @@ permissions:
   trueportals.commands.portal.status:
     description: Allows player to change the status of portals
     default: op
+  trueportals.commands.activation.status:
+    description: Allows player to change the status of portals activation
+    default: op
   trueportals.commands.destination.spawn:
     description: Allows the player to teleport to a changed portal destination with a command
     default: op
