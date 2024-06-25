@@ -1,5 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import me.truec0der.trueportals.command.ICommand;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
@@ -7,14 +10,11 @@ import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.command.CommandSender;
 
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CommandReload implements ICommand {
-    private final LangConfig langConfig;
-    private final PluginReloadService pluginReloadService;
-
-    public CommandReload(LangConfig langConfig, PluginReloadService pluginReloadService) {
-        this.langConfig = langConfig;
-        this.pluginReloadService = pluginReloadService;
-    }
+    LangConfig langConfig;
+    PluginReloadService pluginReloadService;
 
     @Override
     public String getName() {

@@ -1,5 +1,6 @@
 package me.truec0der.trueportals.command;
 
+import lombok.Getter;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -8,15 +9,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CommandManager {
-    private final List<ICommand> commands;
-
-    public CommandManager() {
-        this.commands = new ArrayList<>();
-    }
-
-    public List<ICommand> getCommands() {
-        return commands;
-    }
+    @Getter
+    private final List<ICommand> commands = new ArrayList<>();;
 
     public List<String> getCommandNames() {
         return commands.stream().map(ICommand::getName).collect(Collectors.toList());
@@ -42,6 +36,5 @@ public class CommandManager {
 
     public void addCommand(ICommand command) {
         commands.add(command);
-
     }
 }

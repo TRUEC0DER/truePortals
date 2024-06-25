@@ -1,5 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import me.truec0der.trueportals.command.ICommand;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import net.kyori.adventure.audience.Audience;
@@ -11,12 +14,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CommandDestinationSpawn implements ICommand {
-    private final MainConfig mainConfig;
-
-    public CommandDestinationSpawn(MainConfig mainConfig) {
-        this.mainConfig = mainConfig;
-    }
+    MainConfig mainConfig;
 
     @Override
     public String getName() {

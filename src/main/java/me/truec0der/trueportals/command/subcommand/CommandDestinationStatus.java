@@ -1,5 +1,8 @@
 package me.truec0der.trueportals.command.subcommand;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import me.truec0der.trueportals.command.ICommand;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
@@ -11,14 +14,11 @@ import org.bukkit.command.CommandSender;
 import java.util.HashMap;
 import java.util.Map;
 
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CommandDestinationStatus implements ICommand {
     private final MainConfig mainConfig;
     private final LangConfig langConfig;
-
-    public CommandDestinationStatus(MainConfig mainConfig, LangConfig langConfig) {
-        this.mainConfig = mainConfig;
-        this.langConfig = langConfig;
-    }
 
     @Override
     public String getName() {
