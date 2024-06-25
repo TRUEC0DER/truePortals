@@ -27,7 +27,7 @@ public class PortalActivateServiceImpl implements PortalActivateService {
     }
 
     private boolean isValidInteraction(Action action, Block clickedBlock, ItemStack usedItem) {
-        if (clickedBlock == null) return false;
+        if (clickedBlock == null || usedItem == null) return false;
         return action == Action.RIGHT_CLICK_BLOCK && clickedBlock.getType().name().startsWith("END_PORTAL_FRAME") && usedItem.getType().name().startsWith("ENDER_EYE");
     }
 }
