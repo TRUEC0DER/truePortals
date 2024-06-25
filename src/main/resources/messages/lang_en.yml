@@ -55,6 +55,11 @@ status:
       <#A55AE3>| <white>End-portals » %end_portal_status%
       <#A55AE3>| <white>Nether-portals » %nether_portal_status%
       <#A55AE3>|
+      <#A55AE3>| » Activation status
+      <#A55AE3>|
+      <#A55AE3>| <white>End-portals » %end_activation_status%
+      <#A55AE3>| <white>Nether-portals » %nether_activation_status%
+      <#A55AE3>|
       <#A55AE3>| » Destination status
       <#A55AE3>|
       <#A55AE3>| <white>End-portals » %end_destination_status%

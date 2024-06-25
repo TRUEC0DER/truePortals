@@ -55,6 +55,11 @@ status:
       <#A55AE3>| <white>Энд-порталы » %end_portal_status%
       <#A55AE3>| <white>Незер-порталы » %nether_portal_status%
       <#A55AE3>|
+      <#A55AE3>| » Активация порталов
+      <#A55AE3>|
+      <#A55AE3>| <white>Энд-порталы » %end_activation_status%
+      <#A55AE3>| <white>Незер-порталы » %nether_activation_status%
+      <#A55AE3>|
       <#A55AE3>| » Изменение места назначения
       <#A55AE3>|
       <#A55AE3>| <white>Энд-порталы » %end_destination_status%
