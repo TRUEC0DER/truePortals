@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.interfaces.service.portal.PortalActivateService;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,7 +16,7 @@ public class PortalActivateServiceImpl implements PortalActivateService {
     MainConfig mainConfig;
 
     @Override
-    public boolean handleEndPortal(Action action, Block clickedBlock, ItemStack usedItem) {
+    public boolean handleEndPortal(Player player, Action action, Block clickedBlock, ItemStack usedItem) {
         if (!isValidInteraction(action, clickedBlock, usedItem)) return false;
         return !mainConfig.isActivationEnd();
     }
