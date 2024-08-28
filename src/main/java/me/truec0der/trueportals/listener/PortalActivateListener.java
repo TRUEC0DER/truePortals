@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityCreatePortalEvent;
@@ -29,15 +30,4 @@ public class PortalActivateListener implements Listener {
         if (event.getReason() != PortalCreateEvent.CreateReason.FIRE) return;
         event.setCancelled(portalActivateService.handleNetherPortal());
     }
-
-//    @EventHandler
-//    private void onPlayerActivateNetherPortal(EntityCreatePortalEvent event) {
-//        if (event.getEntity() instanceof Player) {
-//            Player player = (Player) event.getEntity();
-//            event.setCancelled(portalActivateService.handleNetherPortal(player));
-//            return;
-//        }
-//
-//        event.setCancelled(portalActivateService.handleNetherPortal());
-//    }
 }
