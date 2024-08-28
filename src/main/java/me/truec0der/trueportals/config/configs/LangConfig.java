@@ -31,6 +31,7 @@ public class LangConfig extends ConfigHolder {
     private String activationChangeInfo;
     private List<String> activationChangePortals;
     private List<String> activationChangeStates;
+    private String activationCanNotEnd;
     private String destinationSetSpawnInfo;
     private List<String> destinationSetSpawnPortals;
     private String statusCanNotUseEndTitle;
@@ -71,6 +72,8 @@ public class LangConfig extends ConfigHolder {
         activationChangeInfo = config.getString("activation.change.info");
         activationChangePortals = config.getStringList("activation.change.portals");
         activationChangeStates = config.getStringList("activation.change.states");
+
+        activationCanNotEnd = config.getString("activation.can-not-activate.end");
 
         destinationChangeInfo = config.getString("destination.change.info");
         destinationChangePortals = config.getStringList("destination.change.portals");
