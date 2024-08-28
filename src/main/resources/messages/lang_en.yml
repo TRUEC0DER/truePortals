@@ -92,6 +92,9 @@ activation:
     states:
       - <red>disabled # Disabled placeholder
       - <green>enabled # Enabled placeholder
+  can-not-activate: # Message when player tries to activate the disabled activation portal
+    portals:
+      end: <#A55AE3>End <white>portals activation are disabled
 destination:
   change:
     info: <#A55AE3>| <white>You %destination_status% <white>change the destinations for %portal_name% <white>portals # Changed portal status message
