@@ -88,7 +88,7 @@ public final class TruePortals extends JavaPlugin {
     private void initService() {
         pluginReloadService = new PluginReloadServiceImpl(mainConfig, langConfig);
         portalEnterService = new PortalEnterServiceImpl(adventure(), taskScheduler, mainConfig, langConfig);
-        portalActivateService = new PortalActivateServiceImpl(mainConfig, langConfig);
+        portalActivateService = new PortalActivateServiceImpl(adventure(), mainConfig, langConfig);
     }
 
     private void initCommand() {

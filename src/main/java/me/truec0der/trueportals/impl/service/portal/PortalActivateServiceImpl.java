@@ -6,6 +6,9 @@ import lombok.experimental.FieldDefaults;
 import me.truec0der.trueportals.config.configs.LangConfig;
 import me.truec0der.trueportals.config.configs.MainConfig;
 import me.truec0der.trueportals.interfaces.service.portal.PortalActivateService;
+import me.truec0der.trueportals.util.MessageUtil;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -14,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PortalActivateServiceImpl implements PortalActivateService {
+    BukkitAudiences adventure;
     MainConfig mainConfig;
     LangConfig langConfig;
 
@@ -21,8 +25,11 @@ public class PortalActivateServiceImpl implements PortalActivateService {
     public boolean handleEndPortal(Player player, Action action, Block clickedBlock, ItemStack usedItem) {
         if (!isValidInteraction(action, clickedBlock, usedItem)) return false;
 
-        String canNotActivate = langConfig.getActivationCanNotEnd();
-        if (canNotActivate != null && !canNotActivate.isEmpty()) player.sendMessage(canNotActivate);
+        if (!mainConfig.isActivationEnd()) {
+            Audience audience = adventure.player(player);
+            String canNotActivate = langConfig.getActivationCanNotEnd();
+            if (canNotActivate != null && !canNotActivate.isEmpty()) audience.sendMessage(MessageUtil.create(canNotActivate));
+        }
 
         return !mainConfig.isActivationEnd();
     }
