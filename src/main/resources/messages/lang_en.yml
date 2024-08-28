@@ -92,7 +92,7 @@ activation:
     states:
       - <red>disabled # Disabled placeholder
       - <green>enabled # Enabled placeholder
-  can-not-activate: # Message when player tries to activate the disabled activation portal
+  can-not-activate: # Message when player tries to activate the disabled activation portal. Make empty value for disable
     portals:
       end: <#A55AE3>| <#A55AE3>End <white>portals activation are disabled
 destination:
