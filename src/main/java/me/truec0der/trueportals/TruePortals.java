@@ -81,7 +81,8 @@ public final class TruePortals extends JavaPlugin {
         String destinationName = destinationPathSplit[destinationPathSplit.length - 1];
 
         PluginUpdateService pluginUpdateService = new PluginUpdateServiceImpl("https://truec0der.github.io/plugin/truePortals.json", destinationPath, destinationName, langConfig);
-        if (mainConfig.isUpdateCheck()) pluginUpdateService.handleCheck(getDescription().getVersion(), mainConfig.isUpdateAuto());
+        if (mainConfig.isUpdateCheck())
+            pluginUpdateService.handleCheck(getDescription().getVersion(), mainConfig.isUpdateAuto());
     }
 
     private void initService() {

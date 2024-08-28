@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class CommandManager {
     @Getter
-    private final List<ICommand> commands = new ArrayList<>();;
+    private final List<ICommand> commands = new ArrayList<>();
 
     public List<String> getCommandNames() {
         return commands.stream().map(ICommand::getName).collect(Collectors.toList());

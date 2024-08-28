@@ -8,10 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Builder
 @Data
@@ -25,7 +22,9 @@ public class PluginVersionEntity {
         JSONArray infoArray = (JSONArray) jsonObject.get("info");
         List<String> infoList = new ArrayList<>();
 
-        infoArray.forEach(value -> { infoList.add(value.toString()); });
+        infoArray.forEach(value -> {
+            infoList.add(value.toString());
+        });
 
         return PluginVersionEntity.builder()
                 .version(jsonObject.get("version").toString())

@@ -7,5 +7,6 @@ import org.bukkit.inventory.ItemStack;
 
 public interface PortalActivateService {
     boolean handleEndPortal(Player player, Action action, Block clickedBlock, ItemStack usedItem);
+
     boolean handleNetherPortal();
 }
