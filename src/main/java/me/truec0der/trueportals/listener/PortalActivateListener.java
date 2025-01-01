@@ -16,11 +16,13 @@ public class PortalActivateListener implements Listener {
 
     @EventHandler
     private void onPlayerActivateEndPortal(PlayerInteractEvent event) {
+        if (event.isCancelled()) return;
         event.setCancelled(portalActivateService.handleEndPortal(event.getPlayer(), event.getAction(), event.getClickedBlock(), event.getItem()));
     }
 
     @EventHandler
     private void onActivateNetherPortal(PortalCreateEvent event) {
+        if (event.isCancelled()) return;
         if (event.getReason() != PortalCreateEvent.CreateReason.FIRE) return;
         event.setCancelled(portalActivateService.handleNetherPortal());
     }
