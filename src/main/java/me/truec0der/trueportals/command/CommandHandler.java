@@ -7,7 +7,6 @@ import me.truec0der.trueportals.interfaces.service.plugin.PluginReloadService;
 import me.truec0der.trueportals.util.MessageUtil;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -69,7 +68,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
         if (!foundCommands.isEmpty()) {
             for (ICommand commandObject : foundCommands) {
-                if (Pattern.matches(commandObject.getRegex(), StringUtils.join(slicedArgs, " "))) {
+                if (Pattern.matches(commandObject.getRegex(), String.join(" ", slicedArgs))) {
                     if (!sender.hasPermission(commandObject.getPermission())) {
                         audience.sendMessage(MessageUtil.create(langConfig.getNotPerms()));
                         return true;
